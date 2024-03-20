@@ -1,4 +1,4 @@
-I=imread('ngc4024l.tif');imshow(I); 
+I=imread('manchasolar.jpg');imshow(I); 
 a = 63;
 I1=im2double(I);I2=I1; 
 for n=1:174, 
