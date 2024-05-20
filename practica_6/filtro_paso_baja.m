@@ -1,3 +1,4 @@
+%{
 % Leer la imagen de entrada
 imagen = imread('Fig5.04(i).jpg');
 imagen = double(imagen); 
@@ -24,3 +25,9 @@ imagen_filtrada = ifft2(G);
 figure;
 imshow(abs(imagen_filtrada), []);
 title('Imagen Filtrada');
+
+%}
+
+[u,v]=freqspace(100,'meshgrid'); % Crea una cuadrícula de frecuencia en el dominio de la frecuencia
+H=sqrt(u.^2+v.^2)<0.75; % Se genera un círculo
+meshz(u,v,H) % Dibuja en 3D la figura H en las coordenadas (u,v)

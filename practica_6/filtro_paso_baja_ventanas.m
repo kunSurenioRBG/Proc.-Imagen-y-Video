@@ -1,3 +1,4 @@
+%{
 % Leer la imagen de entrada
 imagen_entrada = imread('manchasolar.jpg'); 
 imagen_entrada = double(imagen_entrada); 
@@ -28,3 +29,21 @@ imagen_filtrada = uint8(abs(imagen_filtrada)); % Convertir la imagen filtrada a 
 figure;
 imshow(imagen_filtrada);
 title('Imagen Filtrada con Filtro de Paso Bajo');
+%}
+
+[f1,f2]=freqspace(15,'meshgrid'); % Crea una cuadrícula 15x15
+
+H=zeros(15,15); % Rellena todo de ceros
+
+H(7:12,7:12)=1; % Se asignan 1s a una región concretra
+
+% Se visualiza la matriz H en tres dimensiones. 
+% Con axis se establen los límites de los ejes y con colormap asignamos colores
+mesh(f1,f2,H),axis([-1 1 -1 1 0 1.2]),colormap(jet(64))
+
+% Utiliza el filtro de ventana de Hamming
+h=fwind1(H,hamming(15));
+
+% Muestra el resultado en tres dimensiones
+figure,freqz2(h,[32 32]),axis([-1 1 -1 1 0 1.2])
+

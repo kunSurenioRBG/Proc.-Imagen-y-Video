@@ -1,3 +1,4 @@
+%{
 % Leer la imagen de entrada
 imagen = imread('Fig5.04(i).jpg'); 
 imagen = double(imagen); 
@@ -19,3 +20,7 @@ imagen_filtrada = ifft2(F .* H);
 figure;
 imshow(uint8(abs(imagen_filtrada)), []);
 title('Imagen Filtrada con el Filtro de Laplace en el Dominio de las Frecuencias');
+%}
+
+h=[0 -1 0;-1 4 -1;0 -1 0]; % Filtro de Laplace
+freqz2(h) % Pasa el filtro h a una imagen en 3D
